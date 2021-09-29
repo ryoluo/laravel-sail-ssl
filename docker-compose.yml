@@ -1,6 +1,17 @@
-# For more information: https://laravel.com/docs/sail
 version: '3'
 services:
+    web:
+        image: nginx:latest
+        volumes:
+          - ./nginx/templates:/etc/nginx/templates
+          - ./nginx/certs/:/etc/nginx/certs
+        ports:
+            - '${APP_SSL_PORT:-443}:443'
+        networks:
+            sail:
+                ipv4_address: ${APP_ADDRESS}
+        depends_on:
+            - laravel.test
     laravel.test:
         build:
             context: ./vendor/laravel/sail/runtimes/8.0
@@ -84,6 +95,10 @@ services:
 networks:
     sail:
         driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: ${NW_SUBNET}
 volumes:
     sailmysql:
         driver: local
