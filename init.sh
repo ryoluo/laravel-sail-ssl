@@ -14,5 +14,4 @@ docker run --rm \
     -w /opt \
     laravelsail/php80-composer:latest \
     bash -c "composer install && \
-             php ./artisan sail:install --with=mysql,redis,meilisearch,mailhog,selenium && \
              php ./artisan key:generate"
