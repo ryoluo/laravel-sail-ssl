@@ -3,8 +3,16 @@
 Docker is required.
 
 ```bash
-# create .env file and install modules
-sh ./init.sh
+# create .env file
+cp .env.example .env
+
+# install modules
+docker run --rm \
+    -v $(pwd):/opt \
+    -w /opt \
+    laravelsail/php80-composer:latest \
+    bash -c "composer install && \
+             php ./artisan key:generate"
 
 # generate server certs
 openssl req -x509 -nodes -newkey rsa:2048 -days 3650 \
