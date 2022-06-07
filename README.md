@@ -1,3 +1,11 @@
+# This sample is depricated. A plugin [🚢 Sail-SSL](https://github.com/ryoluo/sail-ssl) is now available.
+
+Check it out!
+
+---
+
+Old contents are below.
+
 ## Setup
 
 Docker is required.
